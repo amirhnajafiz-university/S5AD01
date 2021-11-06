@@ -19,6 +19,8 @@ Boyer Moore is a combination of the following two approaches.
 - 1. Bad Character Heuristic 
 - 2. Good Suffix Heuristic 
 
+## Bad Character Heuristic 
+
 It processes the pattern and creates different arrays for each of the two heuristics. At every step, it slides the pattern by the max of the slides suggested by each of the two heuristics. So it uses greatest offset suggested by the two heuristics at every step. 
 
 Unlike the previous pattern searching algorithms, the Boyer Moore algorithm starts matching from the last character of the pattern.
@@ -34,3 +36,17 @@ The character of the text which doesn’t match with the current character of th
 ### Case 2
 <img src="./pics/bad-char-ex-2.png" width="500" />
 
+## Good Suffix Heuristic 
+Let t be substring of text T which is matched with substring of pattern P. Now we shift pattern until :
+- 1. Another occurrence of t in P matched with t in T.
+- 2. A prefix of P, which matches with suffix of t
+- 3. P moves past t
+
+### Case 1: Another occurrence of t in P matched with t in T
+<img src="./pics/good-1.png" width="500" />
+
+### Case 2: A prefix of P, which matches with suffix of t in T
+<img src="./pics/good-2.png" width="500" />
+
+### Case 3: P moves past t
+<img src="./pics/good-3.png" width="500" />

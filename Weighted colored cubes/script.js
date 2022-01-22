@@ -102,7 +102,6 @@ class Tower {
         listToCopy.forEach(element => {
             copyCubes.push(element);
         });
-        console.log(copyCubes);
         return copyCubes;
     }
 
@@ -119,15 +118,12 @@ class Tower {
             for (var buttomIndex = 0; buttomIndex < 6; buttomIndex++) {
                 element.putButtomIndex(buttomIndex);
                 if (this.isValidPosition(element, tempCubes)) {
-                    tempCubes.push(element);
-                    this.findOptimalSolution(tempCubes)
+                    this.findOptimalSolution(tempCubes.concat([element]))
                 } else {
                     element.putButtomIndex(firstIndex);
                 }
             }
         });
-
-        this.printTower();
     }
 }
 
@@ -136,5 +132,6 @@ let heavyCube2 = new Cube(90, [BLUE, BLUE, BLUE, BLUE, BLUE, BLUE]);
 let cubes = [new Cube(10), new Cube(2), new Cube(8), new Cube(1), heavyCube1, heavyCube2, new Cube(80), new Cube(40), new Cube(20)]
 let tower = new Tower(cubes)
 tower.findOptimalSolution([])
+tower.printTower()
 document.write("Done <br />")
 document.write(tower.resCubes.length);

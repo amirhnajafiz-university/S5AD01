@@ -87,7 +87,7 @@ function solveNQUtil(board, row, col, res, score, minScore) {
             maxPossibleScore = score + calculateMaxScore(board, i*N+j, N-res[0]);
             if (maxPossibleScore < minScore) 
                 return false;
-            if (i == row && j < col)
+            if (i == row && j > col)
                 continue;
             if (isSafe(board, i, j)) {
                 newScore = score + getScore(board, i*N+j);

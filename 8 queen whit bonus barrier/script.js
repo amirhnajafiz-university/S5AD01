@@ -76,20 +76,26 @@ function calculateMaxScore(board, index, queensToPlace) {
     return score;
 }
 
-function solveNQUtil(board, row, col, res) {
+function solveNQUtil(board, row, col, res, score, minScore) {
     if (res[0] >= N) {
+        document.write(score);
         return true
     }
 
-    for (var i = row; i < N; i++) {
-        for (var j = 0; j < N; j ++) {
+    for (var i = row; i > -1; i--) {
+        for (var j = N-1; j > -1; j--) {
+            maxPossibleScore = score + calculateMaxScore(board, i*N+j, N-res[0]);
+            if (maxPossibleScore < minScore) 
+                return false;
             if (i == row && j < col)
                 continue;
             if (isSafe(board, i, j)) {
+                newScore = score + getScore(board, i*N+j);
+
                 board[i][j] =1;
                 res[0] +=1;
 
-                if (solveNQUtil(board, i ,j+1, res)) {
+                if (solveNQUtil(board, i ,j+1, res, newScore, minScore)) {
                     printSolution(board);
                     document.write("<br />");
                     res[1] += 1;
@@ -115,5 +121,5 @@ for (var i = 0; i < N; i++) {
 res = [0, 0];
 printSolution(board);
 document.write("<br />");
-solveNQUtil(board, 0, 0, res);
+solveNQUtil(board, N-1, N-1, res, 0, 50);
 document.write("count found: " + res[1]);

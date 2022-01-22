@@ -1,9 +1,9 @@
-const BLUE = "B";
-const RED = "R";
-const GREEN = "G";
-const ORANGE = "O";
-const PURPLE = "P";
-const WHITE = "W";
+const BLUE = "blue";
+const RED = "red";
+const GREEN = "green";
+const ORANGE = "orange";
+const PURPLE = "purple";
+const WHITE = "black";
 
 const colors = [BLUE, RED, GREEN, ORANGE, PURPLE, WHITE];
 
@@ -64,9 +64,9 @@ class Cube {
     }
 
     toString() {
-        return "--" + this.sides[this.buttomIndex] + "-- [" + this.sides + "]<br />" +
-               "| " + this.wight + " |<br />" +
-               "--" + this.sides[this.sides.length-(this.buttomIndex+1)] + "--<br />";
+        return "<div style='margin: 15px auto; padding: 10px; width:400px; border-top: 5px solid " + this.sides[this.buttomIndex] + "; border-bottom: 5px solid " + this.sides[this.sides.length-(this.buttomIndex+1)] + ";'>" +
+        this.wight + " <br /> " + this.sides + 
+        "</div>"
     }
 }
 
@@ -133,4 +133,4 @@ let cubes = [new Cube(10), new Cube(2), new Cube(8), new Cube(1), heavyCube1, he
 let tower = new Tower(cubes)
 tower.findOptimalSolution([])
 tower.printTower()
-document.write(tower.resCubes.length);
+document.write("Total number of cubes " + tower.resCubes.length);

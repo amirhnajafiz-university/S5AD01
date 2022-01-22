@@ -64,9 +64,9 @@ class Cube {
     }
 
     toString() {
-        return "--" + this.sides[this.sides.length-(this.buttomIndex+1)] + "--<br />" +
-               this.wight + "<br />" +
-               "--" + this.sides[this.buttomIndex] + "--<br />";
+        return "--" + this.sides[this.buttomIndex] + "-- [" + this.sides + "]<br />" +
+               "| " + this.wight + " |<br />" +
+               "--" + this.sides[this.sides.length-(this.buttomIndex+1)] + "--<br />";
     }
 }
 
@@ -100,7 +100,7 @@ class Tower {
     copyCubeList(listToCopy) {
         let copyCubes = [];
         listToCopy.forEach(element => {
-            copyCubes.push(element);
+            copyCubes.push(new Cube(element.wight, element.sides, element.buttomIndex));
         });
         return copyCubes;
     }
@@ -133,5 +133,4 @@ let cubes = [new Cube(10), new Cube(2), new Cube(8), new Cube(1), heavyCube1, he
 let tower = new Tower(cubes)
 tower.findOptimalSolution([])
 tower.printTower()
-document.write("Done <br />")
 document.write(tower.resCubes.length);

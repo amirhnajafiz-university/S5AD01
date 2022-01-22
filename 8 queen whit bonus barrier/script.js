@@ -47,6 +47,35 @@ function isSafe(board, row, col) {
     return true;
 }
 
+function getScore(board, index) {
+    if (index >= N*N) 
+        return 0;
+    let row = Math.floor(index / N);
+    let col = index % N;
+
+    if (board[row][col] != 0) 
+        return 0;
+    
+    return index + 1;
+}
+
+function calculateMaxScore(board, index, queensToPlace) {
+    let placedQ = 0;
+    let score = 0;
+    let currentIndex = index;
+
+    while (queensToPlace > placedQ && currentIndex < N*N && currentIndex >= 0) {
+        let scoreToAdd = getScore(board, currentIndex);
+        if (scoreToAdd > 0) {
+            score += scoreToAdd;
+            placedQ++;
+        }
+        currentIndex -= 1;
+    }
+
+    return score;
+}
+
 function solveNQUtil(board, row, col, res) {
     if (res[0] >= N) {
         return true

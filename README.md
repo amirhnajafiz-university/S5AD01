@@ -1,4 +1,8 @@
-# Algorithm Design
+<h1 align="center">
+    S5AD01
+</h1>
+
+<br />
 
 My Algorithm design course at CEIT/AUT (Fall 2021).
 
